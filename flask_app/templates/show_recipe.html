@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Recipe Share</title>
+
+    <style>
+        .label-column {
+            font-weight: bold;
+            background-color: #e9ecef; /* A light gray color */
+            padding: 10px;
+        }
+        
+        .data-column {
+            background-color: #f8f9fa; /* A lighter gray color */
+            padding: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="d-flex justify-content-between align-items-center ">
+        <h1 class="ml-4">Welcome, {{logged_in_user_name}}</h1>
+        <div>
+            <a href="/recipes" class="mr-4 border-bottom">back to recipes</a>
+            <a href="/logout" class="mr-4 border-bottom">logout</a>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+    <div class="card" style="width: 44rem;">
+        <div class="card-header bg-primary text-white d-flex justify-content-between ">
+            <h3>{{recipe_user[0].name}}</h3>
+            <p>Posted by: {{recipe_user[0].creator['first_name']}}</p>
+        </div>
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-4 label-column">Description:</div>
+                <div class="col-8 data-column">{{recipe_user[0].description}}</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-4 label-column">Under 30 Minutes?</div>
+                <div class="col-8 data-column">{{'Yes' if recipe_user[0].under_30_mins == 0 else 'No'}}</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-4 label-column">Instructions:</div>
+                <div class="col-8 data-column">{{recipe_user[0].instructions}}</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-4 label-column">Date Made:</div>
+                <div class="col-8 data-column">{{recipe_user[0].date_cooked.strftime('%B %d, %Y')}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

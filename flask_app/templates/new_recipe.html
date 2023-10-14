@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Recipe</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    .custom-shadow {
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/recipes/show">Add new Recipe!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link border-bottom" href="/recipes">back to recipes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link border-bottom" href="/logout">logout</a>
+            </li>
+          </ul>
+        </div>
+    </header>
+    <div class="container mt-5">
+        <form action="/recipes/new" method="post">
+          <label class="text-danger font-weight-bolder bg-warning">
+            {% with messages = get_flashed_messages(category_filter=['recipe_form']) %}    
+            {% if messages %}                      
+                {% for message in messages %}           
+                    <p>{{message}}</p>                   
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+          </label>
+            <div class="row">
+                <div class="col-md-6">
+                <div class="form-group">
+                    <label for="recipeName">Name:</label>
+                    <input type="text" class="form-control" name="recipeName" id="inputText" placeholder="Enter text">
+                </div>
+                <div class="form-group">
+                    <label for="recipeDescription">description:</label>
+                    <textarea class="form-control" name="recipeDescription" id="textArea1" rows="3" placeholder="Enter text"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipeInstructions">Instructions:</label>
+                    <textarea class="form-control" name="recipeInstructions" id="textArea2" rows="3" placeholder="Enter text"></textarea>
+                </div>
+                </div>
+
+                <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
+                <div class="form-group">
+                    <label for="dateInput">Date Cooked/Made:</label>
+                    <input type="date" name="dateInput" class="form-control" id="dateInput">
+                </div>
+                <div class="form-group">
+                    <label>Under 30 Minutes?</label>
+                    <div class="form-check">
+                    <input class="form-check-input" type="radio" name="under30" id="under30" value="yes">
+                    <label class="form-check-label" for="under30">Yes</label>
+                    </div>
+                    <div class="form-check">
+                    <input class="form-check-input" type="radio" name="under30" id="no" value="over30">
+                    <label class="form-check-label" for="over30">No</label>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary custom-shadow">Create</button>
+        </form>
+    </div>
+</body>
+
+</html>
